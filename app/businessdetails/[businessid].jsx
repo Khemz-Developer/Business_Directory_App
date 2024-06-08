@@ -1,9 +1,13 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../configs/FirebaseConfig";
 import { ActivityIndicator } from "react-native";
+import Intro from "../../components/BusinessDetails/Intro";
+import ActionButton from "../../components/BusinessDetails/ActionButton";
+import About from "../../components/BusinessDetails/About";
+import Reviews from "../../components/BusinessDetails/Reviews";
 
 export default function BusinessDetail() {
   const { businessid } = useLocalSearchParams();
@@ -35,9 +39,21 @@ export default function BusinessDetail() {
          
         }} size="large" color="#0000ff" />
       ) : (
-        <View>
-        <Text>{businessid}</Text>
-        </View>
+        <ScrollView>
+           
+           {/* Intro */}
+           <Intro businessDetails={businessDetails}/>
+
+           {/* Action Button */}
+           <ActionButton businessDetails={businessDetails}/>
+          
+           {/* About Section */}
+           <About businessDetails={businessDetails}/>
+           
+           {/* Reviews Section */}
+           <Reviews businessDetails={businessDetails}/>
+
+        </ScrollView>
       )}
     </View>
   );
