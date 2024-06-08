@@ -13,13 +13,15 @@ export default function Header() {
         padding:20,
         paddingTop:40,
         backgroundColor:Colors.primary,
-        borderBottomLeftRadius:20
+        borderBottomLeftRadius:20,
+        borderBottomRightRadius:20
     }}>
       <View style={{
         display:'flex',
         flexDirection:'row',
         alignItems:'center',
-        gap:10
+        gap:10,
+        paddingTop:10
         }}>
         <Image style={{width:50,height:50, borderRadius:100}} source={{uri:user?.imageUrl}} />
       

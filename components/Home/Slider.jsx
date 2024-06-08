@@ -7,6 +7,7 @@ import { FlatList } from 'react-native'
 const Slider = () => {
 
     const [sliderList,setSliderList] = useState([])
+
     useEffect(()=>{
         GetSliderList()
     },[]);
@@ -18,9 +19,12 @@ const Slider = () => {
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach((doc)=>{
-            console.log(doc.data());
-            setSliderList(prev=>[...prev,doc.data()])
+            //console.log(doc.data());
+            setSliderList(prev=>[...prev,doc.data()]);
+           
+            
         })
+        
     }
   return (
     <View>
@@ -29,8 +33,8 @@ const Slider = () => {
         fontSize:20,
         paddingLeft:20,
         paddingTop:20,
-        marginBottom:5
-      }}>#Special for you </Text>
+        marginBottom:10
+      }}>Special for you ! </Text>
 
       <FlatList style={{
         paddingLeft:20
@@ -38,7 +42,7 @@ const Slider = () => {
         <Image source={{uri:item.imageUrl}}
         style={{
             width:300,
-            height:150,
+            height:160,
             borderRadius:15,
             marginRight:15
 
