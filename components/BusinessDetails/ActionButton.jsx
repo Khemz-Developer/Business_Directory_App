@@ -1,4 +1,4 @@
-import { View, Text, Image,TouchableOpacity } from "react-native";
+import { View, Text, Image,TouchableOpacity,Share } from "react-native";
 import React from "react";
 import { FlatList } from "react-native";
 import { Linking } from "react-native";
@@ -32,9 +32,22 @@ export default function ActionButton({ businessDetails }) {
       id: 4,
       name: "Share",
       icon: shareImage,
-      url : "https://api.whatsapp.com/send?text=Check out this business "+businessDetails?.name+" at "+businessDetails?.address+" Contact: "+businessDetails?.contact+" Website: "+businessDetails?.website,
+      action: () => {
+        const message = `Check out this business ${businessDetails?.name} at ${businessDetails?.address} Contact: ${businessDetails?.contact} Website: ${businessDetails?.website}`;
+        Share.share({
+          message,
+        });
+      },
     },
   ];
+
+  const handlePress = (item) => {
+    if (item.action) {
+      item.action();
+    } else {
+      Linking.openURL(item.url);
+    }
+  };
   return (
     <View
       style={{
@@ -50,7 +63,7 @@ export default function ActionButton({ businessDetails }) {
         }}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
-          <TouchableOpacity onPress={()=>Linking.openURL(item.url)}
+          <TouchableOpacity onPress={() => handlePress(item)}
             style={{
               marginHorizontal: 20,
             }}

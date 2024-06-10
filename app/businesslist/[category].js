@@ -23,7 +23,7 @@ export default function BusinessListByCategory() {
   const getBusinessList = async () => {
     setLoading(true);
     setBusinessList([]);
-    //fetch business list by category by firebase
+    
     const q = query(
       collection(db, "BusinessList"),
       where("category", "==", category)

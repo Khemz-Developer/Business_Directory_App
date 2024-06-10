@@ -13,6 +13,7 @@ export default function BusinessDetail() {
   const { businessid } = useLocalSearchParams();
   const [businessDetails, setBusinessDetails] = useState({});
   const [loading, setLoading] = useState(false);
+  
   useEffect(() => {
     GetBusinessDetailsById();
   }, []);
@@ -25,7 +26,7 @@ export default function BusinessDetail() {
 
     if (docSnap.exists()) {
       //console.log("Document data:", docSnap.data());
-      setBusinessDetails(docSnap.data());
+      setBusinessDetails({id:docSnap.id,...docSnap.data()});
       setLoading(false);
     } else {
       console.log("No such document!");
